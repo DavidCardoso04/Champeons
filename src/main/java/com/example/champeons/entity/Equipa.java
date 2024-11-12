@@ -7,8 +7,13 @@ public class Equipa {
     private String nome;
     private int pontuacao;
     private Pais pais;
-    private ArrayList<Pais> paisesConflito;
-    private ArrayList<Equipa> adversariosLista = new ArrayList<>(10);
+    private ArrayList<Pais> paisesConflito = new ArrayList<>();
+    private static ArrayList<Equipa> adversariosLista = new ArrayList<>(10);
+    private static int pote1 = 0;
+    private static int pote2 = 0;
+    private static int pote3 = 0;
+    private static int pote4 = 0;
+
 
     @Override
     public String toString() {

@@ -1,6 +1,7 @@
 package com.example.champeons.service;
 
 import com.example.champeons.entity.Equipa;
+import com.example.champeons.entity.Pais;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,22 +18,39 @@ public class JogosService {
 
     public ArrayList<ArrayList> getAllGiveaway(){
         ArrayList<ArrayList> gameTable = new ArrayList<>(36);
-        ArrayList<Equipa> pote1Bloqueados = new ArrayList<>(9);
-        ArrayList<Equipa> pote2Bloqueados = new ArrayList<>(9);
-        ArrayList<Equipa> pote3Bloqueados = new ArrayList<>(9);
-        ArrayList<Equipa> pote4Bloqueados = new ArrayList<>(9);
-        Random random = new Random();
 
         for(int i=0; i<equipaList.size(); i++){
             Equipa equipa = equipaList.get(i);
             ArrayList<Equipa> listaAdversarios = equipa.getAdversariosLista();
-            listaAdversarios.add(equipa);
 
             for(int x=0; x<2;){
-                int y = 1 + (int)(Math.random() * ((9 - 1) + 1);
-                if(pote1Bloqueados.get(y-1) == null && equipa.getPais() != equipaList.get(y-1).getPais()){
-                    pote1Bloqueados.set(y-1, equipaList.get(y-1));
+                if(equipa.getAdversariosLista().get(x) == null){
+                    int y = 1 + (int)(Math.random() * ((9 - 1) + 1));
+                    --y;
+                    Equipa equipaAdversaria = equipaList.get(y);
+                    Boolean conflito = false;
+                    for(int verificarPais=0; verificarPais<48-1; verificarPais++){
+                        if(equipaAdversaria.getAdversariosLista().get(verificarPais).getPais() == equipa.getPais()){
+                            conflito = true;
+                            break;
+                        }
+                    }
+                    for(int verificarPaisProibido=0; verificarPaisProibido<equipaAdversaria.getPaisesConflito().size(); verificarPaisProibido++){
+                        if(equipa.getPais() == equipaAdversaria.getPaisesConflito().get(verificarPaisProibido)){
+                            conflito = true;
+                            break;
+                        }
+                    }
 
+                    if(conflito = false && equipa.getPais() != equipaAdversaria.getPais()){
+                        for(int introduzir=0; introduzir<2; introduzir++){
+                            if(equipa.getAdversariosLista().set(introduzir, equipaAdversaria) != null){
+                                x++;
+                            }
+                        }
+                    }
+                }else{
+                    x++;
                 }
             }
 
