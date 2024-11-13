@@ -22,9 +22,7 @@ public class JogosService {
         setTeams(equipaList.get(2));
         setTeams(equipaList.get(3));
         setTeams(equipaList.get(4));
-        setTeams(equipaList.get(5));
-        setTeams(equipaList.get(6));
-        setTeams(equipaList.get(7));
+
 
         printTable();
     }
@@ -62,20 +60,27 @@ public class JogosService {
 
     public void setTeams(Equipa equipa){
         int pote1Max=2, pote2Max=2, pote3Max=2, pote4Max=2;
-
-
         int min, max;
         while(pote1Max != 0){
             min = 1;
-            max = 9;
+            max = 10;
             if(pote1Max == 1){
                 if(grid[equipa.getNrLista()-1][2] == null){
-                    grid[equipa.getNrLista()-1][2] = getTeam(min, max, equipa, pote1Max);
-
+                    while (getTeam(min, max, equipa, pote1Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote1Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][2] = equipa1;
+                        }
+                    }
                 }
             }else{
                 if(grid[equipa.getNrLista()-1][1] == null){
-                    grid[equipa.getNrLista()-1][1] = getTeam(min, max, equipa, pote1Max);
+                    while (getTeam(min, max, equipa, pote1Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote1Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][1] = equipa1;
+                        }
+                    }
                 }
             }
             pote1Max--;
@@ -85,11 +90,23 @@ public class JogosService {
             max = 18;
             if(pote2Max == 1){
                 if(grid[equipa.getNrLista()-1][4] == null){
-                    grid[equipa.getNrLista()-1][4] = getTeam(min, max, equipa, pote2Max);
+                    do{
+                        Equipa equipa1 = getTeam(min, max, equipa, pote2Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][4] = equipa1;
+                            break;
+                        }
+                    }while(true);
                 }
             }else{
                 if(grid[equipa.getNrLista()-1][3] == null){
-                    grid[equipa.getNrLista()-1][3] = getTeam(min, max, equipa, pote2Max);
+                    do{
+                        Equipa equipa1 = getTeam(min, max, equipa, pote2Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][3] = equipa1;
+                            break;
+                        }
+                    }while(true);
                 }
             }
             pote2Max--;
@@ -99,11 +116,21 @@ public class JogosService {
             max = 27;
             if(pote3Max == 1){
                 if(grid[equipa.getNrLista()-1][6] == null){
-                    grid[equipa.getNrLista()-1][6] = getTeam(min, max, equipa, pote3Max);
+                    while (getTeam(min, max, equipa, pote3Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote3Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][6] = equipa1;
+                        }
+                    }
                 }
             }else{
                 if(grid[equipa.getNrLista()-1][5] == null){
-                    grid[equipa.getNrLista()-1][5] = getTeam(min, max, equipa, pote3Max);
+                    while (getTeam(min, max, equipa, pote3Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote3Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][5] = equipa1;
+                        }
+                    }
                 }
             }
             pote3Max--;
@@ -113,11 +140,21 @@ public class JogosService {
             max = 35;
             if(pote4Max == 1){
                 if(grid[equipa.getNrLista()-1][8] == null){
-                    grid[equipa.getNrLista()-1][8] = getTeam(min, max, equipa, pote4Max);
+                    while (getTeam(min, max, equipa, pote4Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote4Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][8] = equipa1;
+                        }
+                    }
                 }
             }else{
                 if(grid[equipa.getNrLista()-1][7] == null){
-                    grid[equipa.getNrLista()-1][7] = getTeam(min, max, equipa, pote4Max);
+                    while (getTeam(min, max, equipa, pote4Max)==null){
+                        Equipa equipa1 = getTeam(min, max, equipa, pote4Max);
+                        if(equipa1 != null){
+                            grid[equipa.getNrLista()-1][7] = equipa1;
+                        }
+                    }
                 }
             }
             pote4Max--;
@@ -125,71 +162,50 @@ public class JogosService {
     }
 
     public Equipa getTeam(int min, int max, Equipa equipa, int poteInserido){
-        do{
-            Random random = new Random();
-            int randomNumber = random.nextInt(max + 1 - min) + min;
+        Random random = new Random();
+        int randomNumber = random.nextInt(max + 1 - min) + min;
 
-            Equipa equipaAdversaria = equipaList.get(randomNumber);
+        Equipa equipaAdversaria = equipaList.get(randomNumber);
 
-            //Verificar qual é o numero da equipa para saber se vamos colocar no pote 1, pote 2, pote 3 ou pote 4 da equipa adversaria
-            if(equipaAdversaria.getNrLista() > 28){
-                //Sabemos que é do pote 4, então vê-mos se é possivel colocar no pote 4 da equipa adversaria
-                if(poteInserido == 1){
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][8];
-                    if(equipaVerificar == null){
-                        grid[equipaAdversaria.getNrLista()-1][8] = equipa;
-                        return equipaAdversaria;
-                    }
-                }else{
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][7];
-                    if(equipaVerificar == null) {
-                        grid[equipaAdversaria.getNrLista()-1][7] = equipa;
-                        return equipaAdversaria;
-                    }
-                }
-            }else if(equipaAdversaria.getNrLista() > 19) {
-                if(poteInserido == 1){
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][6];
-                    if(equipaVerificar == null){
-                        grid[equipaAdversaria.getNrLista()-1][6] = equipa;
-                        return equipaAdversaria;
-                    }
-                }else{
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][5];
-                    if(equipaVerificar == null) {
-                        grid[equipaAdversaria.getNrLista()-1][5] = equipa;
-                        return equipaAdversaria;
-                    }
-                }
-            }else if(equipaAdversaria.getNrLista() > 10) {
-                if(poteInserido == 1){
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][4];
-                    if(equipaVerificar == null){
-                        grid[equipaAdversaria.getNrLista()-1][4] = equipa;
-                        return equipaAdversaria;
-                    }
-                }else{
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][3];
-                    if(equipaVerificar == null) {
-                        grid[equipaAdversaria.getNrLista()-1][3] = equipa;
-                        return equipaAdversaria;
-                    }
-                }
-            }else if(equipaAdversaria.getNrLista() > 0) {
-                if(poteInserido == 1){
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][2];
-                    if(equipaVerificar == null){
-                        grid[equipaAdversaria.getNrLista()-1][2] = equipa;
-                        return equipaAdversaria;
-                    }
-                }else{
-                    Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][1];
-                    if(equipaVerificar == null) {
-                        grid[equipaAdversaria.getNrLista()-1][1] = equipa;
-                        return equipaAdversaria;
-                    }
-                }
+        if(checkTeam(equipa, equipaAdversaria, poteInserido)){
+            if(poteInserido == 1){
+                grid[equipaAdversaria.getNrLista()-1][2] = equipa;
+                return equipaAdversaria;
+            }else{
+                grid[equipaAdversaria.getNrLista()-1][1] = equipa;
+                return equipaAdversaria;
             }
-        }while(true);
+        }
+        return null;
+    }
+
+    public boolean checkTeam(Equipa equipa, Equipa equipaAdversaria, int poteInserido){
+
+        //Se não existir adversario
+        if(equipaAdversaria == null){
+            return false;
+        }
+
+        //Se o adversario tiver os opunentes escolhidos
+        if(poteInserido == 1){
+            Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][2];
+            if(equipaVerificar != null){
+                return false;
+            }
+        }else{
+            Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][1];
+            if(equipaVerificar != null) {
+                return false;
+            }
+        }
+
+        if(equipa == equipaAdversaria){
+            return false;
+        }
+        if(equipa.getPais() == equipaAdversaria.getPais()){
+            return false;
+        }
+
+        return true;
     }
 }
