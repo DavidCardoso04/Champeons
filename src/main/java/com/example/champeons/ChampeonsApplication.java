@@ -53,7 +53,9 @@ public class ChampeonsApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChampeonsApplication.class, args);
+		JogosService jogosService = new JogosService();
+		jogosService.getAllGiveaway();
+		//SpringApplication.run(ChampeonsApplication.class, args);
 	}
 
 }
