@@ -22,6 +22,28 @@ public class JogosService {
         setTeams(equipaList.get(2));
         setTeams(equipaList.get(3));
         setTeams(equipaList.get(4));
+        setTeams(equipaList.get(5));
+        setTeams(equipaList.get(6));
+//        setTeams(equipaList.get(7));
+//        setTeams(equipaList.get(8));
+//        setTeams(equipaList.get(9));
+//        setTeams(equipaList.get(10));
+//        setTeams(equipaList.get(11));
+//        setTeams(equipaList.get(12));
+//        setTeams(equipaList.get(13));
+//        setTeams(equipaList.get(14));
+//        setTeams(equipaList.get(15));
+//        setTeams(equipaList.get(16));
+//        setTeams(equipaList.get(17));
+//        setTeams(equipaList.get(18));
+//        setTeams(equipaList.get(19));
+//        setTeams(equipaList.get(20));
+//        setTeams(equipaList.get(21));
+//        setTeams(equipaList.get(22));
+//        setTeams(equipaList.get(23));
+//        setTeams(equipaList.get(24));
+//        setTeams(equipaList.get(25));
+//        setTeams(equipaList.get(26));
 
 
         printTable();
@@ -59,151 +81,255 @@ public class JogosService {
     }
 
     public void setTeams(Equipa equipa){
-        int pote1Max=2, pote2Max=2, pote3Max=2, pote4Max=2;
+        int poteNr = 0;
+        if(equipa.getNrLista() <= 9){
+            poteNr=1;
+        }else if(equipa.getNrLista() <= 18){
+            poteNr=3;
+        }else if(equipa.getNrLista() <= 27){
+            poteNr=5;
+        }else if(equipa.getNrLista() <= 36){
+            poteNr=7;
+        }
         int min, max;
-        while(pote1Max != 0){
+        while(poteNr <= 2){
             min = 1;
             max = 10;
-            if(pote1Max == 1){
-                if(grid[equipa.getNrLista()-1][2] == null){
-                    while (getTeam(min, max, equipa, pote1Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote1Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][2] = equipa1;
-                        }
+            if(grid[equipa.getNrLista()-1][1] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote11()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote11(true);
+                        equipa.setPote11(true);
+                        grid[equipa.getNrLista()-1][1] = equipa1;
                     }
                 }
-            }else{
-                if(grid[equipa.getNrLista()-1][1] == null){
-                    while (getTeam(min, max, equipa, pote1Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote1Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][1] = equipa1;
-                        }
+            }else if(grid[equipa.getNrLista()-1][2] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote12()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote12(true);
+                        equipa.setPote12(true);
+                        grid[equipa.getNrLista()-1][2] = equipa1;
                     }
                 }
             }
-            pote1Max--;
+            poteNr++;
         }
-        while(pote2Max != 0){
+        while(poteNr > 2 && poteNr <= 4){
             min = 10;
             max = 18;
-            if(pote2Max == 1){
-                if(grid[equipa.getNrLista()-1][4] == null){
-                    do{
-                        Equipa equipa1 = getTeam(min, max, equipa, pote2Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][4] = equipa1;
-                            break;
-                        }
-                    }while(true);
+            if(grid[equipa.getNrLista()-1][3] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote21()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote21(true);
+                        equipa.setPote21(true);
+                        grid[equipa.getNrLista()-1][3] = equipa1;
+                    }
                 }
-            }else{
-                if(grid[equipa.getNrLista()-1][3] == null){
-                    do{
-                        Equipa equipa1 = getTeam(min, max, equipa, pote2Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][3] = equipa1;
-                            break;
-                        }
-                    }while(true);
+            }else if(grid[equipa.getNrLista()-1][4] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote22()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote22(true);
+                        equipa.setPote22(true);
+                        grid[equipa.getNrLista()-1][4] = equipa1;
+                    }
                 }
             }
-            pote2Max--;
+            poteNr++;
         }
-        while(pote3Max != 0){
+        while(poteNr > 4 && poteNr <= 6){
             min = 19;
             max = 27;
-            if(pote3Max == 1){
-                if(grid[equipa.getNrLista()-1][6] == null){
-                    while (getTeam(min, max, equipa, pote3Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote3Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][6] = equipa1;
-                        }
+            if(grid[equipa.getNrLista()-1][5] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote31()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote31(true);
+                        equipa.setPote31(true);
+                        grid[equipa.getNrLista()-1][5] = equipa1;
                     }
                 }
-            }else{
-                if(grid[equipa.getNrLista()-1][5] == null){
-                    while (getTeam(min, max, equipa, pote3Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote3Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][5] = equipa1;
-                        }
+            }else if(grid[equipa.getNrLista()-1][6] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote32()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote32(true);
+                        equipa.setPote32(true);
+                        grid[equipa.getNrLista()-1][6] = equipa1;
                     }
                 }
             }
-            pote3Max--;
+            poteNr++;
         }
-        while(pote4Max != 0){
+        while(poteNr > 6 && poteNr <= 8){
             min = 28;
             max = 35;
-            if(pote4Max == 1){
-                if(grid[equipa.getNrLista()-1][8] == null){
-                    while (getTeam(min, max, equipa, pote4Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote4Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][8] = equipa1;
-                        }
+            if(grid[equipa.getNrLista()-1][7] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote41()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote41(true);
+                        equipa.setPote41(true);
+                        grid[equipa.getNrLista()-1][7] = equipa1;
                     }
                 }
-            }else{
-                if(grid[equipa.getNrLista()-1][7] == null){
-                    while (getTeam(min, max, equipa, pote4Max)==null){
-                        Equipa equipa1 = getTeam(min, max, equipa, pote4Max);
-                        if(equipa1 != null){
-                            grid[equipa.getNrLista()-1][7] = equipa1;
-                        }
+            }else if(grid[equipa.getNrLista()-1][8] == null){
+                while (!equipaList.get(equipa.getNrLista()-1).isPote42()){
+                    Equipa equipa1 = getTeam(min, max, equipa, poteNr);
+                    if(equipa1 != null){
+                        equipaList.get(equipa1.getNrLista()-1).setPote42(true);
+                        equipa.setPote42(true);
+                        grid[equipa.getNrLista()-1][8] = equipa1;
                     }
                 }
             }
-            pote4Max--;
+            poteNr++;
         }
     }
 
-    public Equipa getTeam(int min, int max, Equipa equipa, int poteInserido){
+    public Equipa getTeam(int min, int max, Equipa equipa, int poteNr){
         Random random = new Random();
         int randomNumber = random.nextInt(max + 1 - min) + min;
 
         Equipa equipaAdversaria = equipaList.get(randomNumber);
 
-        if(checkTeam(equipa, equipaAdversaria, poteInserido)){
-            if(poteInserido == 1){
-                grid[equipaAdversaria.getNrLista()-1][2] = equipa;
-                return equipaAdversaria;
-            }else{
-                grid[equipaAdversaria.getNrLista()-1][1] = equipa;
-                return equipaAdversaria;
+        if(checkTeam(equipa, equipaAdversaria, poteNr)){
+            if (equipa.getNrLista() <= 9) {
+                if (poteNr % 2 == 0 && !equipaList.get(equipaAdversaria.getNrLista() - 1).isPote12()) {
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote12(true);
+                    grid[equipaAdversaria.getNrLista()-1][2] = equipa;
+                    return equipaAdversaria;
+                }else if(!equipaList.get(equipaAdversaria.getNrLista() - 1).isPote11()){
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote11(true);
+                    grid[equipaAdversaria.getNrLista()-1][1] = equipa;
+                    return equipaAdversaria;
+                }
+            } else if (equipa.getNrLista() <= 18) {
+                if (poteNr % 2 == 0 && !equipaList.get(equipaAdversaria.getNrLista() - 1).isPote22()) {
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote22(true);
+                    grid[equipaAdversaria.getNrLista()-1][4] = equipa;
+                    return equipaAdversaria;
+                }else if(!equipaList.get(equipaAdversaria.getNrLista() - 1).isPote21()){
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote21(true);
+                    grid[equipaAdversaria.getNrLista()-1][3] = equipa;
+                    return equipaAdversaria;
+                }
+            } else if (equipa.getNrLista() <= 27) {
+                if (poteNr % 2 == 0 && !equipaList.get(equipaAdversaria.getNrLista() - 1).isPote32()) {
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote32(true);
+                    grid[equipaAdversaria.getNrLista()-1][6] = equipa;
+                    return equipaAdversaria;
+                }else if(!equipaList.get(equipaAdversaria.getNrLista() - 1).isPote31()){
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote31(true);
+                    grid[equipaAdversaria.getNrLista()-1][5] = equipa;
+                    return equipaAdversaria;
+                }
+            } else if (equipa.getNrLista() <= 36) {
+                if (poteNr % 2 == 0 && !equipaList.get(equipaAdversaria.getNrLista() - 1).isPote42()) {
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote42(true);
+                    grid[equipaAdversaria.getNrLista()-1][8] = equipa;
+                    return equipaAdversaria;
+                }else if(!equipaList.get(equipaAdversaria.getNrLista() - 1).isPote41())
+                    equipaList.get(equipaAdversaria.getNrLista() - 1).setPote41(true);
+                    grid[equipaAdversaria.getNrLista()-1][7] = equipa;
+                    return equipaAdversaria;
+                }
             }
-        }
         return null;
     }
 
-    public boolean checkTeam(Equipa equipa, Equipa equipaAdversaria, int poteInserido){
+    public boolean checkTeam(Equipa equipa, Equipa equipaAdversaria, int poteNr){
+        int x=0;
+        //Se a equipa for do pote 9
+        if(equipa.getNrLista() <= 9){
+            //Verifica se é em casa
+            if(!equipaList.get(equipa.getNrLista()-1).isPote11()){
+                //Se a equipa adversaria está preenchida em casa no pote 1
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote11()){
+                    return false;
+                }
+            }else if(!equipaList.get(equipa.getNrLista()-1).isPote12()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote12()){
+                    return false;
+                }
+            }
+        }else if(equipa.getNrLista() <= 18){
+            if(!equipaList.get(equipa.getNrLista()-1).isPote21()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote21()){
+                    return false;
+                }
+            }else if(equipaList.get(equipa.getNrLista()-1).isPote22()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote22()){
+                    return false;
+                }
+            }
+        }else if(equipa.getNrLista() <= 27){
+            if(!equipaList.get(equipa.getNrLista()-1).isPote31()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote31()){
+                    return false;
+                }
+            }else if(!grid[equipa.getNrLista()-1][0].isPote32()){
+                if(grid[equipaAdversaria.getNrLista()-1][0].isPote32()){
+                    return false;
+                }
+            }
+        }else if(equipa.getNrLista() <= 36){
+            if(!equipaList.get(equipa.getNrLista()-1).isPote41()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote41()){
+                    return false;
+                }
+            }else if(!equipaList.get(equipa.getNrLista()-1).isPote42()){
+                if(equipaList.get(equipaAdversaria.getNrLista()-1).isPote12()){
+                    return false;
+                }
+            }
+        }
 
-        //Se não existir adversario
-        if(equipaAdversaria == null){
+        //Se a equipa adversaria já tiver este oponente ou 2 oponentes do mesmo pais
+        for(int i=0; i<9; i++){
+            if(grid[equipaAdversaria.getNrLista()-1][1] != null && grid[equipa.getNrLista()-1][i] != null){
+                Equipa equipaAdversariaSpot = grid[equipaAdversaria.getNrLista()-1][1];
+                Equipa equipaSpot = grid[equipa.getNrLista()-1][i];
+                //Se já jogou contra essa equipa
+                if(equipaAdversariaSpot.equals(equipaSpot)){
+                    return false;
+                }
+                //Se já tem 2 jogos contra o mesmo pais
+                if(equipaAdversariaSpot.getPais().equals(equipaSpot.getPais())){
+                    x++;
+                }if(x == 3){
+                    return false;
+                }
+            }else if(grid[equipaAdversaria.getNrLista()-1][2] != null && grid[equipa.getNrLista()-1][i] != null){
+                Equipa equipaAdversariaSpot = grid[equipaAdversaria.getNrLista()-1][2];
+                Equipa equipaSpot = grid[equipa.getNrLista()-1][i];
+
+                //Se já jogou contra essa equipa
+                if(equipaAdversariaSpot.equals(equipaSpot)){
+                    return false;
+                }
+                //Se já tem 2 jogos contra o mesmo pais
+                if(equipaAdversariaSpot.getPais().equals(equipaSpot.getPais())){
+                    x++;
+                }if(x == 3){
+                    return false;
+                }
+            }
+        }
+
+        //Se forem do mesmo pais
+        if(equipa.getPais().equals(equipaAdversaria.getPais())){
             return false;
         }
 
-        //Se o adversario tiver os opunentes escolhidos
-        if(poteInserido == 1){
-            Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][2];
-            if(equipaVerificar != null){
+        //Se o pais tiver conflito com o outro pais
+        for(int i=0; i<equipa.getPaisesConflito().size(); i++){
+            if(equipa.getPaisesConflito().get(i).equals(equipaAdversaria.getPais())){
                 return false;
             }
-        }else{
-            Equipa equipaVerificar = grid[equipaAdversaria.getNrLista()-1][1];
-            if(equipaVerificar != null) {
-                return false;
-            }
-        }
-
-        if(equipa == equipaAdversaria){
-            return false;
-        }
-        if(equipa.getPais() == equipaAdversaria.getPais()){
-            return false;
         }
 
         return true;

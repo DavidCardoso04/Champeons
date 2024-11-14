@@ -9,15 +9,7 @@ public class Equipa {
     private int pontuacao;
     private Pais pais;
     private ArrayList<Pais> paisesConflito = new ArrayList<>();
-    private static boolean pote11= false, pote12=false, pote21=false, pote22=false, pote31=false, pote32=false, pote41=false, pote42=false;
-    public static int ENGLAND=0, SPAIN=0, ITALY=0, GERMANY=0, FRANCE=0,PORTUGAL=0, NETHERLANDS=0, BELGIUM=0, SWITZERLAND=0, TURKEY=0,
-            AUSTRIA=0, SCOTLAND=0, DENMARK=0, SWEDEN=0, NORWAY=0, GREECE=0, CROATIA=0, SERBIA=0, UKRAINE=0, RUSSIA=0, HUNGARY=0, ISRAEL=0,
-            POLAND=0, CZECH_REPUBLIC=0, ROMANIA=0, BULGARIA=0, SLOVAKIA=0, CYPRUS=0, BELARUS=0, LITHUANIA=0, GEORGIA=0, KAZAKHSTAN=0,
-            AZERBAIJAN=0, ARMENIA=0, LUXEMBOURG=0, SLOVENIA=0, BOSNIA_AND_HERZEGOVINA=0, ALBANIA=0, MOLDOVA=0, MACEDONIA=0, MONTENEGRO=0,
-            LATVIA=0, ESTONIA=0, ICELAND=0, FAROE_ISLANDS=0, GIBRALTAR=0, SAN_MARINO=0, MALTA=0, ANDORRA=0;
-
-
-
+    private boolean pote11, pote12, pote21, pote22, pote31, pote32, pote41, pote42;
 
     @Override
     public String toString() {
@@ -64,6 +56,70 @@ public class Equipa {
         this.paisesConflito = paisesConflito;
     }
 
+    public boolean isPote11() {
+        return pote11;
+    }
+
+    public void setPote11(boolean pote11) {
+        this.pote11 = pote11;
+    }
+
+    public boolean isPote12() {
+        return pote12;
+    }
+
+    public void setPote12(boolean pote12) {
+        this.pote12 = pote12;
+    }
+
+    public boolean isPote21() {
+        return pote21;
+    }
+
+    public void setPote21(boolean pote21) {
+        this.pote21 = pote21;
+    }
+
+    public boolean isPote22() {
+        return pote22;
+    }
+
+    public void setPote22(boolean pote22) {
+        this.pote22 = pote22;
+    }
+
+    public boolean isPote31() {
+        return pote31;
+    }
+
+    public void setPote31(boolean pote31) {
+        this.pote31 = pote31;
+    }
+
+    public boolean isPote32() {
+        return pote32;
+    }
+
+    public void setPote32(boolean pote32) {
+        this.pote32 = pote32;
+    }
+
+    public boolean isPote41() {
+        return pote41;
+    }
+
+    public void setPote41(boolean pote41) {
+        this.pote41 = pote41;
+    }
+
+    public boolean isPote42() {
+        return pote42;
+    }
+
+    public void setPote42(boolean pote42) {
+        this.pote42 = pote42;
+    }
+
     public Equipa() {
     }
 
@@ -86,5 +142,13 @@ public class Equipa {
         this.pontuacao = pontuacao;
         this.pais = pais;
         this.paisesConflito = paisesConflito;
+        this.pote11 = false;
+        this.pote12 = false;
+        this.pote21 = false;
+        this.pote22 = false;
+        this.pote31 = false;
+        this.pote32 = false;
+        this.pote41 = false;
+        this.pote42 = false;
     }
 }
